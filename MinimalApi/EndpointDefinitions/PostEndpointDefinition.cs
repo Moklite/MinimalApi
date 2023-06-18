@@ -2,7 +2,6 @@
 using Application.Posts.Queries;
 using Domain.Models;
 using MediatR;
-using Microsoft.Extensions.Hosting;
 using MinimalApi.Abstractions;
 using MinimalApi.Filiters;
 
@@ -16,10 +15,10 @@ namespace MinimalApi.EndpointDefinitions
             post.MapGet("/{id}", GetPostById)
                 .WithName("GetPostById");
             post.MapPost("/", CreatePost)
-                .AddEndpointFilter<PostValidationFiliters>();
+                .AddEndpointFilter<PostValidationFilters>();
             post.MapGet("/", GetAllPosts);
             post.MapPut("/{id}", UpdatePost)
-                .AddEndpointFilter<PostValidationFiliters>();
+                .AddEndpointFilter<PostValidationFilters>();
             post.MapDelete("/{id}", DeletePost);
         }
 

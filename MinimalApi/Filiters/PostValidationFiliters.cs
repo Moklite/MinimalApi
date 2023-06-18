@@ -2,7 +2,7 @@
 
 namespace MinimalApi.Filiters
 {
-    public class PostValidationFiliters : IEndpointFilter
+    public class PostValidationFilters : IEndpointFilter
     {
         public async ValueTask<object?> InvokeAsync
             (EndpointFilterInvocationContext context,
