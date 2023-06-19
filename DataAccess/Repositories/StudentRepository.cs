@@ -42,13 +42,11 @@ namespace DataAccess.Repositories
 
         public async Task<Student> UpdateStudent(Student payload, int studentId)
         {
-            var check = _ctx.Students.FirstOrDefaultAsync(p => p.Id == studentId);
-            if (check == null) { return null; }
-            Student student= new Student();
-            student.Name = payload.Name;
-            student.Class= payload.Class;
+            var check =  await _ctx.Students.FirstOrDefaultAsync(p => p.Id == studentId);
+            check.Name = payload.Name;
+            check.Class = payload.Class;
             await _ctx.SaveChangesAsync();
-            return student;
+            return check;
         }
     }
 }

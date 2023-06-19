@@ -5,6 +5,7 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using MinimalApi.Abstractions;
+using Microsoft.OpenApi.Models;
 
 namespace MinimalApi.Extensions
 {
@@ -18,6 +19,13 @@ namespace MinimalApi.Extensions
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreatePost).GetTypeInfo().Assembly));
             builder.Services.AddScoped<IPostRepository, PostRepository>();
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+            // Add Swagger configuration
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pmailerin's Minimal API Project", Version = "v1" });
+            });
+
         }
 
         public static void RegisterEndPointDefinitions(this WebApplication app)

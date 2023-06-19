@@ -5,6 +5,13 @@ builder.RegisterServices();
 
 var app = builder.Build();
 
+// Enable Swagger UI
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pamilerin API");
+});
+
 app.Use(async (ctx, next) =>
 {
     try
